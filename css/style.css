@@ -1,0 +1,30 @@
+    .userdata{
+      padding-left: 10px
+    }
+
+    .input-group{
+      padding-right: 10px
+    }
+
+  .card {
+    box-shadow: 5px 5px 5px 2px #ccc;
+  }
+
+  .card-header{
+    text-align: center;
+  }
+
+  .img {
+    display: block;
+  }
+
+  .pagination {
+    align-items: center;
+  }
+
+  .user-posts li{
+    list-style-type: none;
+    display: inline-flex;
+    margin:0;
+    padding:0;
+  }
