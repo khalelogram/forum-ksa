@@ -5,7 +5,15 @@ include 'header.php';
 
 ?>
 
- 
+<body>
+
+<?php
+
+include 'navbar.php';
+include 'banner.php';
+
+?>
+
 
   <!-- Page Content -->
   <div class="container">
