@@ -70,7 +70,7 @@
           <form role="form">
             <div class="form-group">
               <label for="inputFullName">Full Name</label>
-              <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+              <input type="FullName" class="form-control" id="inputFullName" aria-describedby="fullName" placeholder="Full Name">
             </div>
             <div class="form-group">
               <label for="inputEmail">Email address</label>
@@ -78,7 +78,7 @@
             </div>
             <div class="form-group">
               <label for="inputUserName">Username</label>
-              <input type="password" class="form-control" id="inputUserName" placeholder="Password">
+              <input type="UserName" class="form-control" id="inputUserName" aria-describedby="userName" placeholder="Username">
             </div>
             <div class="form-group">
               <label for="inputPassword">Password</label>
