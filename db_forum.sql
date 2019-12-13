@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2019 at 08:20 PM
--- Server version: 10.4.10-MariaDB
--- PHP Version: 7.3.12
+-- Generation Time: Dec 13, 2019 at 05:59 AM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,13 +25,14 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_images`
+-- Table structure for table `tbl_comments`
 --
 
-CREATE TABLE `tbl_images` (
-  `id` int(11) NOT NULL,
-  `post_id` int(11) NOT NULL,
-  `image_name` varchar(225) NOT NULL,
+CREATE TABLE `tbl_comments` (
+  `comment_id` int(11) NOT NULL,
+  `post_id` varchar(20) NOT NULL,
+  `user_id` varchar(20) NOT NULL,
+  `comment` varchar(225) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -42,8 +43,8 @@ CREATE TABLE `tbl_images` (
 --
 
 CREATE TABLE `tbl_posts` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
+  `post_id` int(11) NOT NULL,
+  `user_id` varchar(20) NOT NULL,
   `post_title` varchar(100) NOT NULL,
   `post_description` varchar(225) NOT NULL,
   `num_most_comment` int(11) NOT NULL,
@@ -57,7 +58,7 @@ CREATE TABLE `tbl_posts` (
 --
 
 CREATE TABLE `tbl_users` (
-  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `full_name` varchar(50) NOT NULL,
   `username` varchar(20) NOT NULL,
   `email` varchar(70) NOT NULL,
@@ -71,62 +72,44 @@ CREATE TABLE `tbl_users` (
 --
 
 --
--- Indexes for table `tbl_images`
+-- Indexes for table `tbl_comments`
 --
-ALTER TABLE `tbl_images`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FOREIGN KEY` (`post_id`);
+ALTER TABLE `tbl_comments`
+  ADD PRIMARY KEY (`comment_id`);
 
 --
 -- Indexes for table `tbl_posts`
 --
 ALTER TABLE `tbl_posts`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FOREIGN KEY` (`user_id`);
+  ADD PRIMARY KEY (`post_id`);
 
 --
 -- Indexes for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  ADD PRIMARY KEY (`id`) USING BTREE;
+  ADD PRIMARY KEY (`user_id`) USING BTREE;
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `tbl_images`
+-- AUTO_INCREMENT for table `tbl_comments`
 --
-ALTER TABLE `tbl_images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `tbl_comments`
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_posts`
 --
 ALTER TABLE `tbl_posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `tbl_images`
---
-ALTER TABLE `tbl_images`
-  ADD CONSTRAINT `tbl_images_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `tbl_posts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `tbl_posts`
---
-ALTER TABLE `tbl_posts`
-  ADD CONSTRAINT `tbl_posts_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tbl_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
