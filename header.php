@@ -16,12 +16,13 @@
 
   <!-- Custom styles for this template -->
   <link href="css/blog-home.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet" type="text/css">
 
   <style type="text/css">
     .form-group{
       line-height: 3px
     }
-
+    
   </style>
 
 
