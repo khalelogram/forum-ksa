@@ -1,4 +1,22 @@
-<!doctype html>
+<?php 
+    include 'server.php';
+
+    $edit_state = false;
+
+    if(isset($_GET['edit'])){
+        $post_id = $_GET['edit'];
+        $edit_state = true;
+        $rec = mysqli_query($db, "SELECT * FROM tbl_posts WHERE post_id=$post_id");
+        $record = mysqli_fetch_array($rec);
+        $post_title = $record['post_title'];
+        $post_description = $record['post_description'];
+        $post_id = $record['post_id'];
+    }
+
+
+ ?>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -35,7 +53,7 @@
 <body>
 
 <div class="wrapper">
-    <div class="sidebar" data-color="blue" data-image="assets/img/sidebar-5.jpg">
+    <div class="sidebar" data-color="azure">
 
     <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
 
@@ -49,19 +67,19 @@
 
             <ul class="nav">
                 <li>
-                    <a href="userposts.html">
+                    <a href="userposts.php">
                         <i class="pe-7s-note2"></i>
                         <p>My Post</p>
                     </a>
                 </li>
                 <li class="active">
-                    <a href="createpost.html">
+                    <a href="createpost.php">
                         <i class="pe-7s-note"></i>
                         <p>Create</p>
                     </a>
                 </li>
                 <li>
-                    <a href="user.html">
+                    <a href="user.php">
                         <i class="pe-7s-user"></i>
                         <p>User Profile</p>
                     </a>
@@ -82,26 +100,26 @@
                         <span class="icon-bar"></span>
                     </button>
                 </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-left">
-                        <li>
-                           <a href="">
-                                <i class="fa fa-search"></i>
-                                <p class="hidden-lg hidden-md">Search</p>
-                            </a>
-                        </li>
-                    </ul>
+                 <div class="collapse navbar-collapse">
 
                     <ul class="nav navbar-nav navbar-right">
+                        <li style="display: flex; align-items: center;">
+                           <a>
+                                <i class="pe-7s-search"></i></a>
+                            <form>
+                               <input type="search" name="" placeholder="Search" style="border: 2px solid; border-radius: 5px; background:transparent;">
+                            </form>
+                        </li>
                         <li>
-                            
-                           <a href="">
-                               <p>Welcome <img src=""></p>
+                           <a href="" style="display: flex;">
+                                <i class="pe-7s-users"></i>
+                               <p> Welcome!</p>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                                <p>Log out</p>
+                            <a href="#" style="display: flex;">
+                                <i class="pe-7s-power"></i>
+                                <p> Log out</p>
                             </a>
                         </li>
                         <li class="separator hidden-lg hidden-md"></li>
@@ -120,32 +138,31 @@
                                 <h4 class="title">CREATING POST</h4>
                             </div>
                             <div class="content">
-                                <form>
-                                    <div class="row">
-
-                                        <div class="col-md-12">
-                                            
-                                        </div>
-                                        
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group" >
+                                            <form method="POST" action="server.php">
+                                            <label>Topic</label>
+                                            <input type="hidden" name="post_id" value="<?php echo $post_id; ?>">
+                                            <input type="text" name="post_title" value="<?php echo $post_title; ?>" class="form-control" placeholder="Topic" autocomplete="off">
+                                            <label>Description</label>
+                                            <textarea rows="5" name="post_description" class="form-control" placeholder="Topic Description" ><?php echo $post_description; ?></textarea><br>
+                                            <?php if($edit_state == false): ?>
+                                                <button type="submit" name="save" class="btn btn-info btn-fill pull-right">Post</button>
+                                            <?php else: ?>
+                                                <button type="submit" name="update" class="btn btn-info btn-fill pull-right" >Update</button>
+                                                <button type="submit" name="cancel" class="btn btn-info btn-fill pull-right" style="margin-right: 5px">Cancel</button>
+                                            <?php endif ?>   
+                                            </form>
+                                            </div>
+                                        </div>      
                                     </div>
-
-                                    
-
-                           
-
-  
-
-                                    
-                                </form>
-
-
-
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
 
         <footer class="footer">
@@ -160,6 +177,7 @@
 
 
 </body>
+
 
     <!--   Core JS Files   -->
     <script src="assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>

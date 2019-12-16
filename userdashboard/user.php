@@ -1,9 +1,25 @@
-<!doctype html>
+<?php 
+    include 'server.php';
+
+    if(isset($_GET['edit'])){
+        $post_id = $_GET['edit'];
+        $edit_state = true;
+        $rec = mysqli_query($db, "SELECT * FROM tbl_posts WHERE post_id=$post_id");
+        $record = mysqli_fetch_array($rec);
+        $post_title = $record['post_title'];
+        $post_description = $record['post_description'];
+        $post_id = $record['post_id'];
+    }
+ ?>
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
 	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<title>FORUM</title>
 
@@ -35,7 +51,7 @@
 <body>
 
 <div class="wrapper">
-    <div class="sidebar" data-color="blue" data-image="assets/img/sidebar-5.jpg">
+    <div class="sidebar" data-color="azure">
 
     <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
 
@@ -49,26 +65,26 @@
 
             <ul class="nav">
                 <li>
-                    <a href="userposts.html">
+                    <a href="userposts.php">
                         <i class="pe-7s-note2"></i>
                         <p>My Post</p>
                     </a>
                 </li>
                 <li>
-                    <a href="createpost.html">
+                    <a href="createpost.php">
                         <i class="pe-7s-note"></i>
                         <p>Create</p>
                     </a>
                 </li>
                 <li class="active">
-                    <a href="user.html">
+                    <a href="user.php">
                         <i class="pe-7s-user"></i>
                         <p>User Profile</p>
                     </a>
                 </li>
                 
             </ul>
-    	</div>
+        </div>
     </div>
 
     <div class="main-panel">
@@ -83,19 +99,18 @@
                     </button>
                 </div>
                 <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-left">
-                        <li>
-                           <a href="#" style="display: flex;">
-                                <i class="fa fa-search"></i>
-                                <p> Search</p>
-                            </a>
-                        </li>
-                    </ul>
 
                     <ul class="nav navbar-nav navbar-right">
+                        <li style="display: flex; align-items: center;">
+                           <a>
+                                <i class="pe-7s-search"></i></a>
+                            <form>
+                               <input type="search" name="" placeholder="Search" style="border: 2px solid; border-radius: 5px; background:transparent;">
+                            </form>
+                        </li>
                         <li>
                            <a href="" style="display: flex;">
-                                <i class="fa fa-user"></i>
+                                <i class="pe-7s-users"></i>
                                <p> Welcome!</p>
                             </a>
                         </li>
@@ -110,6 +125,7 @@
                 </div>
             </div>
         </nav>
+
 
 
         <div class="content">
@@ -127,49 +143,17 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Username</label>
-                                                <input type="text" class="form-control" placeholder="Username">
+
+                                                
+                                                <input type="hidden" class="form-control" placeholder="Username" value="<?php echo $row['user_id']; ?>">
+                                                <input disabled type="text" class="form-control" placeholder="Username" value="">
+                                                
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Email address</label>
-                                                <input type="email" class="form-control" placeholder="Email">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>First Name</label>
-                                                <input type="text" class="form-control" placeholder="Company">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Last Name</label>
-                                                <input type="text" class="form-control" placeholder="Last Name">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>City</label>
-                                                <input type="text" class="form-control" placeholder="City">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Country</label>
-                                                <input type="text" class="form-control" placeholder="Country">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Postal Code</label>
-                                                <input type="number" class="form-control" placeholder="ZIP Code">
+                                                <input disabled type="email" class="form-control" placeholder="Email" value="">
                                             </div>
                                         </div>
                                     </div>
@@ -177,13 +161,44 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>About Me</label>
-                                                <textarea rows="5" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
+                                                <label>Full Name</label>
+                                                <input disabled type="text" class="form-control" placeholder="Full Name" value=""><br>
+                                                <button class="btn btn-info btn-fill pull-right" href="user.php?edit=">Edit</button>
+                
+                                            </div>
+                                            <br><hr>
+                                            <div class="col-md-12" style="border: 1px solid #bbbbbb; border-radius: 5px; margin: 5px;" >
+                                                <div style="display: flex; justify-content: space-between">
+                                                    <h5>Change Password</h5>
+                                                    <button  type="submit" class="btn btn-info btn-fill" >Edit</button>
+                                                </div>
+                                                <br>
+                                            <div  class="form-group-pass" style="border: 1px solid #bbbbbb; border-radius: 5px; margin: 5px;">
+                                                <form>
+                                                <label>Old Password</label>
+                                                <input type="password" class="form-control" placeholder="Old Password">
+
+                                                <label>New Password</label>
+                                                <input type="password" class="form-control" placeholder="New Password">
+
+                                                <label>Retype Password</label>
+                                                <input type="password" class="form-control" placeholder="Retype Password"><br>
+
+                                                <button type="submit" class="btn btn-info btn-fill" > Update </button>
+                                                </form>
+                                            </div>
+
+         
                                             </div>
                                         </div>
+
+                                        
+
+
+                                        
                                     </div>
 
-                                    <button type="submit" class="btn btn-info btn-fill pull-right">Edit</button>
+                                    
                                     <div class="clearfix"></div>
                                 </form>
                             </div>
@@ -192,12 +207,13 @@
                     <div class="col-md-4">
                         <div class="card card-user">
                             <div class="image">
-                                <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="..."/>
+                                
                             </div>
                             <div class="content">
                                 <div class="author">
                                      <a href="#">
-                                    <img class="avatar border-gray" src="assets/img/faces/face-3.jpg" alt="..."/>
+                                        <img class="avatar border-gray" src="" alt="..."/>
+                                    <!-- <img class="avatar border-gray" src="assets/img/faces/face-3.jpg" alt="..."/> -->
 
                                       <h4 class="title">Mike Andrew<br />
                                          <small>michael24</small>
@@ -208,6 +224,7 @@
                                                     Your chick she so thirsty <br>
                                                     I'm in that two seat Lambo"
                                 </p>
+                        
                             </div>
                         </div>
                     </div>
@@ -227,8 +244,10 @@
     </div>
 </div>
 
-
 </body>
+    
+
+    
 
     <!--   Core JS Files   -->
     <script src="assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
