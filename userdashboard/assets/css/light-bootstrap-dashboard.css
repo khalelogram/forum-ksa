@@ -421,7 +421,7 @@ input:focus {
 }
 
 .sidebar:before {
-    opacity: .33;
+    opacity: 0;
     background: #000000;
 }
 
@@ -439,7 +439,7 @@ input:focus {
 }
 
 .sidebar[data-image]:after, .sidebar.has-image:after {
-    opacity: .77;
+    opacity: 100;
 }
 
 .sidebar[data-color="blue"]:after {

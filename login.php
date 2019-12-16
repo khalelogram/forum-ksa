@@ -74,10 +74,10 @@ if (isset($_POST['btnlogin'])) {
 
             if($account_type == 1) {
               //redirect to admin
-              header('location: userdashboard/userposts.html'); 
+              header('location: userdashboard/userposts.php'); 
             }else {
               //redirect to users
-              header('location: userdashboard/userposts.html');
+              header('location: userdashboard/userposts.php');
             }
 
         }else{
