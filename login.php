@@ -28,10 +28,75 @@
   margin-top: -85px;
 }
 
+.error {
+  color: red;
+
+}
 
 </style>
 
+<?php 
+session_start();
+include("database/database.php");
+$username = $password = "";
+$usernameErr = $passwordErr = "";
 
+if (isset($_POST['btnlogin'])) {
+    if (empty($_POST['username'])) {
+      $usernameErr = "Username is required!";     
+    }else {
+     $username = $_POST['username'];
+    }
+  
+    if (empty($_POST['password'])) {
+      $passwordErr = "Password is Required!"; 
+    }
+    else {
+      $password = $_POST['password'];
+    }
+
+    if ($username && $password) {
+      $check_username = mysqli_query($conn , "SELECT * FROM tbl_users Where username= '$username' ");
+      $check_username_row = mysqli_num_rows($check_username);
+     if ($check_username_row) {
+        $row = mysqli_fetch_assoc($check_username);
+        $user_id = $row['user_id'];
+        $db_password = $row ['password'];
+        $account_type = $row ['account_type'];
+
+        if ($password == $db_password) {
+
+          $_SESSION['user_id'] = $user_id;
+
+
+
+
+
+            if($account_type == 1) {
+              //redirect to admin
+              header('location: userdashboard/userposts.html'); 
+            }else {
+              //redirect to users
+              header('location: userdashboard/userposts.html');
+            }
+
+        }else{
+          $passwordErr = "Password is incorrect!";
+        }
+
+
+       
+     }else{
+       $usernameErr = "Username is not registered!";
+     }
+
+    }
+
+}
+
+
+
+?>
 
 <body>
     <div id="login">
@@ -44,18 +109,18 @@
                             <h3 class="text-center text-info">Login</h3>
                             <div class="form-group">
                                 <label for="username" class="text-info">Username:</label><br>
-                                <input type="text" name="username" id="username" class="form-control">
+                                <input type="text" name="username" id="username" class="form-control" value="<?php echo $username ?>"> <span class="error"> <?php echo $usernameErr; ?></span>
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-info">Password:</label><br>
-                                <input type="text" name="password" id="password" class="form-control">
+                                <input type="password" name="password" id="password" class="form-control" value="<?php echo $password; ?>"> <span class="error"> <?php echo $passwordErr; ?></span>
                             </div>
                             <div class="form-group">
                                 <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
-                                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                                <input type="submit" name="btnlogin" class="btn btn-info btn-md" value="submit">
                             </div>
                             <div id="register-link" class="text-right">
-                                <a href="#" class="text-info">Register here</a>
+                                <a href="signup.php" class="text-info">Register here</a>
                             </div>
                         </form>
                     </div>

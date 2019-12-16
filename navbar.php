@@ -19,12 +19,15 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <div class="input-group" style="padding-right: 10px">
-              <input type="text" class="form-control" placeholder="Search for...">
+            <form method="GET" action="" class="input-group" style="padding-right: 10px">
+
+
+              <input type="text" name="Search" class="form-control" placeholder="Search for..." >
+
               <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button">Go!</button>
+                <button type="submit" name="searchBtn" class="btn btn-secondary" type="button">Go!</button>
               </span>
-            </div>
+            </form>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="signup.php">Sign Up</a>
