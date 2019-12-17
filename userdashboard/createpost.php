@@ -1,5 +1,6 @@
 <?php 
     include 'server.php';
+    session_start();
 
     $edit_state = false;
 
@@ -60,7 +61,7 @@
 
         <div class="sidebar-wrapper">
             <div class="logo">
-                <a href="#" class="simple-text">
+                <a href="../index.php" class="simple-text">
                     KSA
                 </a>
             </div>
@@ -102,6 +103,7 @@
                 </div>
                  <div class="collapse navbar-collapse">
 
+
                     <ul class="nav navbar-nav navbar-right">
                         <li style="display: flex; align-items: center;">
                            <a>
@@ -113,11 +115,11 @@
                         <li>
                            <a href="" style="display: flex;">
                                 <i class="pe-7s-users"></i>
-                               <p> Welcome!</p>
+                               <p> Welcome! <?php echo $_SESSION["username"]; ?></p>
                             </a>
                         </li>
                         <li>
-                            <a href="#" style="display: flex;">
+                            <a href="logout.php" style="display: flex;">
                                 <i class="pe-7s-power"></i>
                                 <p> Log out</p>
                             </a>
@@ -143,6 +145,7 @@
                                         <div class="form-group" >
                                             <form method="POST" action="server.php">
                                             <label>Topic</label>
+                                            <input type="hidden" name="user_id" value="<?php echo $_SESSION["user_id"]; ?>">
                                             <input type="hidden" name="post_id" value="<?php echo $post_id; ?>">
                                             <input type="text" name="post_title" value="<?php echo $post_title; ?>" class="form-control" placeholder="Topic" autocomplete="off">
                                             <label>Description</label>

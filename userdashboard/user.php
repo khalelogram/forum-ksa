@@ -1,15 +1,8 @@
 <?php 
     include 'server.php';
+    session_start();
 
-    if(isset($_GET['edit'])){
-        $post_id = $_GET['edit'];
-        $edit_state = true;
-        $rec = mysqli_query($db, "SELECT * FROM tbl_posts WHERE post_id=$post_id");
-        $record = mysqli_fetch_array($rec);
-        $post_title = $record['post_title'];
-        $post_description = $record['post_description'];
-        $post_id = $record['post_id'];
-    }
+
  ?>
 
 
@@ -58,7 +51,7 @@
 
         <div class="sidebar-wrapper">
             <div class="logo">
-                <a href="#" class="simple-text">
+                <a href="../index.php" class="simple-text">
                     KSA
                 </a>
             </div>
@@ -99,6 +92,7 @@
                     </button>
                 </div>
                 <div class="collapse navbar-collapse">
+                    <input type="hidden" name="user_id" value="<?php echo $_SESSION["user_id"]; ?>">
 
                     <ul class="nav navbar-nav navbar-right">
                         <li style="display: flex; align-items: center;">
@@ -110,12 +104,14 @@
                         </li>
                         <li>
                            <a href="" style="display: flex;">
+
                                 <i class="pe-7s-users"></i>
-                               <p> Welcome!</p>
+                               <p> Welcome! <?php  echo $_SESSION["username"]; ?></p>
                             </a>
+
                         </li>
                         <li>
-                            <a href="#" style="display: flex;">
+                            <a href="logout.php" style="display: flex;">
                                 <i class="pe-7s-power"></i>
                                 <p> Log out</p>
                             </a>
@@ -137,23 +133,20 @@
                                 <h4 class="title">USER PROFILE</h4>
                             </div>
                             <div class="content">
-                                <form>
                                     <div class="row">
-
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Username</label>
-
-                                                
-                                                <input type="hidden" class="form-control" placeholder="Username" value="<?php echo $row['user_id']; ?>">
-                                                <input disabled type="text" class="form-control" placeholder="Username" value="">
+                                                <form method="POST" action="server.php">
+                                                <input type="hidden" name="user_id" class="form-control" placeholder="Username" value="<?php  echo $_SESSION["user_id"]; ?>">
+                                                <input type="text" name="username" class="form-control" placeholder="Username" value="<?php  echo $_SESSION["username"]; ?>" disabled>
                                                 
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Email address</label>
-                                                <input disabled type="email" class="form-control" placeholder="Email" value="">
+                                                <input disabled type="email" class="form-control" placeholder="Email" value="<?php  echo $_SESSION["email"]; ?>">
                                             </div>
                                         </div>
                                     </div>
@@ -162,29 +155,30 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Full Name</label>
-                                                <input disabled type="text" class="form-control" placeholder="Full Name" value=""><br>
-                                                <button class="btn btn-info btn-fill pull-right" href="user.php?edit=">Edit</button>
-                
+                                                <input disabled type="text" class="form-control" placeholder="Full Name" value="<?php  echo $_SESSION["full_name"]; ?>"><br>
+                                            
+                                                <button class="btn btn-info btn-fill pull-right" onclick="Editbtn">Edit</button>
+                                                
                                             </div>
                                             <br><hr>
                                             <div class="col-md-12" style="border: 1px solid #bbbbbb; border-radius: 5px; margin: 5px;" >
                                                 <div style="display: flex; justify-content: space-between">
                                                     <h5>Change Password</h5>
-                                                    <button  type="submit" class="btn btn-info btn-fill" >Edit</button>
+                                                    <button class="btn btn-info btn-fill" >Edit</button>
                                                 </div>
                                                 <br>
-                                            <div  class="form-group-pass" style="border: 1px solid #bbbbbb; border-radius: 5px; margin: 5px;">
-                                                <form>
+                                            <div class="form-group-pass" style="border: 1px solid #bbbbbb; border-radius: 5px; margin: 5px;" >
+                                                
                                                 <label>Old Password</label>
-                                                <input type="password" class="form-control" placeholder="Old Password">
+                                                <input type="password" name="old_pass" class="form-control" placeholder="Old Password">
 
                                                 <label>New Password</label>
-                                                <input type="password" class="form-control" placeholder="New Password">
+                                                <input type="password" name="new_pass" class="form-control" placeholder="New Password">
 
                                                 <label>Retype Password</label>
-                                                <input type="password" class="form-control" placeholder="Retype Password"><br>
+                                                <input type="password" name="re_pass" class="form-control" placeholder="Retype Password"><br>
 
-                                                <button type="submit" class="btn btn-info btn-fill" > Update </button>
+                                                <button type="submit" class="btn btn-info btn-fill" name="update_pass"> Update </button>
                                                 </form>
                                             </div>
 
@@ -200,7 +194,7 @@
 
                                     
                                     <div class="clearfix"></div>
-                                </form>
+                                
                             </div>
                         </div>
                     </div>
@@ -215,34 +209,25 @@
                                         <img class="avatar border-gray" src="" alt="..."/>
                                     <!-- <img class="avatar border-gray" src="assets/img/faces/face-3.jpg" alt="..."/> -->
 
-                                      <h4 class="title">Mike Andrew<br />
-                                         <small>michael24</small>
+                                      <h4 class="title"><?php  echo $_SESSION["full_name"]; ?><br />
+                                         <small><?php  echo $_SESSION["username"]; ?></small>
                                       </h4>
                                     </a>
                                 </div>
-                                <p class="description text-center"> "Lamborghini Mercy <br>
-                                                    Your chick she so thirsty <br>
-                                                    I'm in that two seat Lambo"
+                                <p class="description text-center">  <br>
+                                    <?php  echo $_SESSION["email"]; ?>  <br>
+                                    <?php  echo $_SESSION["created_at"]; ?>
                                 </p>
                         
                             </div>
                         </div>
                     </div>
 
-                </div>
-            </div>
-        </div>
 
 
-        <footer class="footer">
-            <div class="container-fluid">
 
-                
-            </div>
-        </footer>
 
-    </div>
-</div>
+
 
 </body>
     
