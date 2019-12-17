@@ -3,6 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+
 -- Generation Time: Dec 17, 2019 at 07:25 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
@@ -87,6 +88,7 @@ CREATE TABLE `tbl_users` (
   `username` varchar(20) NOT NULL,
   `email` varchar(70) NOT NULL,
   `password` varchar(225) NOT NULL,
+  `account_type` int(1) NOT NULL,
   `user_profile_pic` varchar(225) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -95,11 +97,14 @@ CREATE TABLE `tbl_users` (
 -- Dumping data for table `tbl_users`
 --
 
+
 INSERT INTO `tbl_users` (`user_id`, `full_name`, `username`, `email`, `password`, `user_profile_pic`, `created_at`) VALUES
 (1, 'Michael Macinas', 'KelKelXD', 'macinasmichael05@gmail.com', 'kelkel', 'C:/Users/Student/Desktop.IU1.jpg', '2019-12-13 22:09:33'),
 (2, 'Manuel', 'manman', 'manaman@gmail.com', 'asd', '', '2019-12-16 20:54:02'),
 (3, 'Michael Macinas', 'kelkel', 'macinasmichael05@gmail.com', '123456', '', '2019-12-16 22:56:39'),
 (4, 'man', 'man', 'man@yahoo.com', '123456', '', '2019-12-17 01:36:10');
+
+
 
 --
 -- Indexes for dumped tables

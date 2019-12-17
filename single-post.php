@@ -65,6 +65,9 @@ include 'navbar.php';
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
                                 </p>
+                                  <!-- LikeBtn.com BEGIN -->
+                                    <span class="likebtn-wrapper" data-theme="custom" data-btn_size="25" data-f_size="13" data-icon_size="15" data-icon_l="hrt1" data-icon_l_c="#b400fa" data-icon_d_c="#ec3232" data-identifier="item_1"></span>     
+                                <!-- LikeBtn.com END -->
                             </div>
                         </li>
                         <li class="media" style="border: solid 1px lightblue; margin-bottom: 5px">
@@ -80,6 +83,7 @@ include 'navbar.php';
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Lorem ipsum dolor <a href="#">#ipsumdolor </a>adipiscing elit.
                                 </p>
+                              
                             </div>
                         </li>
                         <li class="media" style="border: solid 1px lightblue; margin-bottom: 5px">
@@ -94,9 +98,30 @@ include 'navbar.php';
                                 <p>
                                     Lorem ipsum dolor <a href="#">#sitamet</a> sit amet, consectetur adipiscing elit.
                                 </p>
+                           
                             </div>
                         </li>
                     </ul>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination" style="float: right;">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
                 </div>
             </div>
         </div>
@@ -107,8 +132,29 @@ include 'navbar.php';
 
 
 
+<script>
+    (function(d,e,s)
+        {
+            if(d.getElementById("likebtn_wjs"))
+                return;
+                    a=d.createElement(e);
+                    m=d.getElementsByTagName(e)[0];
+                    a.async=1;
+                    a.id="likebtn_wjs";
+                    a.src=s;m.parentNode.insertBefore(a, m)
+        }
+    )
+        (document,"script","//w.likebtn.com/js/w/widget.js");
+    </script>
+
+<!-- LikeBtn.com END -->
+
+
+
 <?php
 
 include 'footer.php';
 
 ?>
+
+
