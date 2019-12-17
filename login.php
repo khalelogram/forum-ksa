@@ -1,3 +1,13 @@
+<?php 
+  session_start();
+  include("database/database.php");
+
+  if(isset($_SESSION["user_id"])) {
+  header("Location:userdashboard/userposts.php");
+  }
+
+ ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,8 +46,7 @@
 </style>
 
 <?php 
-session_start();
-include("database/database.php");
+
 $username = $password = "";
 $usernameErr = $passwordErr = "";
 
@@ -61,31 +70,35 @@ if (isset($_POST['btnlogin'])) {
      if ($check_username_row) {
         $row = mysqli_fetch_assoc($check_username);
         $user_id = $row['user_id'];
+        $username = $row['username'];
         $db_password = $row ['password'];
-        $account_type = $row ['account_type'];
+        $full_name = $row ['full_name'];
+        $email = $row ['email'];
+        $created_at = $row['created_at'];
+        $password = $row['password'];
 
         if ($password == $db_password) {
-
           $_SESSION['user_id'] = $user_id;
+          $_SESSION['username'] = $username;
+          $_SESSION['full_name'] = $full_name;
+          $_SESSION['email'] = $email;
+          $_SESSION['created_at'] = $created_at;
+          $_SESSION['password'] = $password;
 
+          header('location: userdashboard/userposts.php');
 
-
-
-
-            if($account_type == 1) {
-              //redirect to admin
-              header('location: userdashboard/userposts.php'); 
-            }else {
-              //redirect to users
-              header('location: userdashboard/userposts.php');
-            }
+            // if($account_type == 1) {
+            //   //redirect to admin
+            //   header('location: userdashboard/userposts.php'); 
+            // }else {
+            //   //redirect to users
+            //   
+            // }
 
         }else{
           $passwordErr = "Password is incorrect!";
         }
 
-
-       
      }else{
        $usernameErr = "Username is not registered!";
      }

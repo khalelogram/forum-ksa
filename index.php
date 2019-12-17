@@ -12,6 +12,7 @@ include 'header.php';
 
 include 'navbar.php';
 include 'banner.php';
+include 'userdashboard/server.php'
 
 ?>
 
@@ -42,45 +43,24 @@ include 'banner.php';
       </div>
 
         <!-- Blog Post -->
-          <div class="card mb-4" style="box-shadow: 5px 5px 5px 2px #ccc;">
-            <div class="card-body">
-            <h2 class="card-title">How to connect to database using php?</h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-            <a href="#">Read More &rarr;</a>
-          </div>
-          <div class="card-footer text-muted">
-            Posted on December 10, 2019 by
-            <a href="#">Moi</a>
-          </div>
-        </div>
-
-          <br>
+        <?php 
+            while ($row = mysqli_fetch_array($result_posts)) { ?>
 
           <div class="card mb-4" style="box-shadow: 5px 5px 5px 2px #ccc;">
             <div class="card-body">
-            <h2 class="card-title">Backend integration help please?</h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+            <h2 class="card-title"><?php echo $row['post_title']; ?></h2>
+            <p class="card-text"><?php echo $row['post_description']; ?></p>
             <a href="#">Read More &rarr;</a>
           </div>
           <div class="card-footer text-muted">
-            Posted on December 12, 2019 by
-            <a href="#">Manuel</a>
+            <?php echo $row['created_at']; ?>
+
+            <a href="#"><?php echo $row['username']; ?> </a>
           </div>
         </div>
+      <?php } ?>
 
-          <br>
-
-          <div class="card mb-4" style="box-shadow: 5px 5px 5px 2px #ccc;">
-            <div class="card-body">
-            <h2 class="card-title">Database Schema Tips?</h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-            <a href="#">Read More &rarr;</a>
-          </div>
-          <div class="card-footer text-muted">
-            Posted on December 13, 2019 by
-            <a href="#">Selah</a>
-          </div>
-        </div>
+          
 
 
       </div>

@@ -1,5 +1,6 @@
 <?php 
     include 'server.php';
+    session_start();
 
         if(isset($_GET['edit'])){
         $post_id = $_GET['edit'];
@@ -12,6 +13,7 @@
     }
 
     
+
 
  ?>
 
@@ -94,7 +96,7 @@
 
         <div class="sidebar-wrapper">
             <div class="logo">
-                <a href="#" class="simple-text">
+                <a href="../index.php" class="simple-text">
                     KSA
                 </a>
             </div>
@@ -135,6 +137,7 @@
                     </button>
                 </div>
                  <div class="collapse navbar-collapse">
+                    
 
                     <ul class="nav navbar-nav navbar-right">
                         <li style="display: flex; align-items: center;">
@@ -145,13 +148,14 @@
                             </form>
                         </li>
                         <li>
+                            
                            <a href="" style="display: flex;">
                                 <i class="pe-7s-users"></i>
-                               <p> Welcome!</p>
+                               <p> Welcome! <?php echo $_SESSION["username"]; ?></p>
                             </a>
                         </li>
                         <li>
-                            <a href="#" style="display: flex;">
+                            <a href="logout.php" style="display: flex;">
                                 <i class="pe-7s-power"></i>
                                 <p> Log out</p>
                             </a>
@@ -173,6 +177,7 @@
                             </div>
                             <div class="content">
                                 <form>
+                                    <input type="hidden" name="user_id" value="<?php echo $_SESSION["user_id"]; ?>">
                                     <div class="row">
 
                                         <div class="col-md-12">

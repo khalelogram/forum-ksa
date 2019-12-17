@@ -83,6 +83,7 @@ if(isset($_POST["btnRegister"])){
       $sql = "INSERT INTO tbl_users (full_name,email,username,password)
           VALUES ('$fullname','$email','$username','$password')";
       mysqli_query($conn, $sql); 
+      header('location: login.php');
 
   }
     
