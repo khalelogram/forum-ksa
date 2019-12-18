@@ -92,7 +92,7 @@ $query = mysqli_query($conn ,"SELECT * FROM tbl_users WHERE email='$email' AND u
 
 
   if($fullname && $email && $username && $password )  {
-    
+
       $sql = "INSERT INTO tbl_users (full_name,email,username,password)
           VALUES ('$fullname','$email','$username','$password')";
       mysqli_query($conn, $sql); 
@@ -100,7 +100,7 @@ $query = mysqli_query($conn ,"SELECT * FROM tbl_users WHERE email='$email' AND u
      
       
       }
-  }
+  
   
   
 
