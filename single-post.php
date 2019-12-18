@@ -81,17 +81,21 @@ $post_state = false;
                     <hr>
                     <ul class="media-list">
                         <?php 
-                        while ($row = mysqli_fetch_array($result_comments)) { ?>
+
+                        $query = "SELECT username, comment, tbl_comments.created_at FROM tbl_users INNER JOIN tbl_comments ON tbl_users.user_id = tbl_comments.user_id";
+                        $result = mysqli_query($db,$query);
+
+                        while ($row = mysqli_fetch_assoc($result)) { ?>
                         <li class="media" style="border: solid 1px lightblue; margin-bottom: 5px">
                             <a href="#" class="pull-left">
-                                <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                                <img src="" alt="" class="img-circle">
                             </a>
                             <div class="media-body">
                                 <span class="text-muted pull-right">
                                     
                                     <small class="text-muted"><?php echo $row['created_at']; ?></small>
                                 </span>
-                                <strong class="text-success">@<?php echo $row['user_id']; ?></strong>
+                                <strong class="text-success"><?php echo $row["username"]; ?></strong>
                                 <p>
                                     <?php echo $row['comment']; ?>
                                 </p>
