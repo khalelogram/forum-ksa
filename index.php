@@ -45,6 +45,7 @@ include 'userdashboard/server.php'
         <!-- Forum Post -->
         <?php 
             while ($row = mysqli_fetch_array($result_posts)) { ?>
+              
 
           <div class="card mb-4" style="box-shadow: 5px 5px 5px 2px #ccc;">
             <div class="card-body">

@@ -19,6 +19,8 @@ $post_state = false;
 
 <div class="rounded-lg" style=" margin: 15px;">
 	<div class="row">
+        <?php 
+            while ($row = mysqli_fetch_array($result_posts)) { ?>
 
 		<div class="col-md-9">
 			<!-- Side Widget -->
@@ -40,14 +42,24 @@ $post_state = false;
 					<div class="avatar" style="margin: auto">
 						<img class="card-img-top" src="https://i.ibb.co/NSzHzZC/avatar.png" width="200px" height="215px">
 					</div class="card-footer">
-						<ul style="list-style-type: none">
-							<li>Username: Boss Moi</li>
-							<li>Member Since: Dec 15, 2019</li>
-							<li>Status: Active</li>
-						</ul>
+						<table style="margin: auto">
+                          <tr>
+                            <td><font class="text-muted">User name:</font></td>
+                            <td class="userdata"><a href=""><?php echo $row['username'];?></a></td>
+                          </tr>
+                          <tr>
+                            <td><font class="text-muted">Member since:</font></td>
+                            <td class="userdata"><font style="color: #007BFF"><?php echo $row['created_at'];?></font></td>
+                          </tr>
+                          <tr>
+                            <td><font class="text-muted">Status:</font></td>
+                            <td class="userdata"><font style="color: #007BFF">Active</font></td>
+                          </tr>
+                        </table>
 					</div>
 				</div>			
 			</div>
+             <?php } ?>
 
 
 	<div class="row bootstrap snippets">
