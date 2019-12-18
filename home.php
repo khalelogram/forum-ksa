@@ -1,16 +1,18 @@
+
 <?php
 
 include 'header.php';
 
+
 ?>
 
 <body>
-  
 
 <?php
 
 include 'navbar.php';
 include 'banner.php';
+include 'userdashboard/server.php'
 
 ?>
 
@@ -92,48 +94,26 @@ include 'banner.php';
           <small>My Posts</small>
         </h2>
 
-        <!-- Blog Post -->
-          <div class="card mb-4">
+<!-- Forum Post -->
+        <?php 
+            while ($row = mysqli_fetch_array($result_posts)) { ?>
+
+          <div class="card mb-4" style="box-shadow: 5px 5px 5px 2px #ccc;">
             <div class="card-body">
-            <h2 class="card-title">How to center elements inside div?</h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+            <a href="single-post.php?post=<?php echo $row['post_id'];?>"><h2 class="card-title"><?php echo $row['post_title']; ?></h2></a>
+            <p class="card-text"><?php echo $row['post_description']; ?></p>
+            <a href="single-post.php?post=<?php echo $row['post_id'];?>">Read More &rarr;</a>
           </div>
           <div class="card-footer text-muted">
-             <ul class="user-posts">
-              <li>Posted on December 9, 2019</li>
-              <li><a href="#">Go to link &rarr;</a></li>
-              <li><a href="#">Edit</a></li>
-              <li><a href="#">Delete</a></li>
-            </ul>
+            <?php echo $row['created_at']; ?>
+
+            <a href="#"><?php echo $row['username']; ?></a>
           </div>
         </div>
+        <br>
+      <?php } ?>
 
-          <br>
-
-          <div class="card mb-4">
-            <div class="card-body">
-            <h2 class="card-title">Does anyone know how to use INNER JOIN query in SQL?</h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-            <a href="#">Read More &rarr;</a>
-          </div>
-          <div class="card-footer text-muted">
-            Posted on December 11, 2019
-          </div>
-        </div>
-
-          <br>
-
-          <div class="card mb-4">
-            <div class="card-body">
-            <h2 class="card-title">How to export database in SQL?</h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-            <a href="#">Read More &rarr;</a>
-          </div>
-          <div class="card-footer text-muted">
-            Posted on December 13, 2019
-          </div>
-        </div>
-
+        
         <!-- Pagination -->
         <ul class="pagination justify-content-center mb-4">
           <li class="page-item">

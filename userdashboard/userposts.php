@@ -188,7 +188,7 @@
                                                         
                                                 <div class="posthistory">
                                                     
-                                                <h5><a href="#"><?php echo $row['post_title']; ?> </a>  <small> ======> <?php echo $row['created_at']; ?> </small> 
+                                                <h5><a href="../single-post.php?post=<?php echo $row['post_id'];?>"><?php echo $row['post_title'];?></a>  <small> ======> <?php echo $row['created_at']; ?> </small> 
                                                     </h5> 
                                                 <p style="font-size: 12px">
                                                     <?php echo $row['post_description']; ?>

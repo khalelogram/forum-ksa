@@ -42,25 +42,25 @@ include 'userdashboard/server.php'
         </ul>
       </div>
 
-        <!-- Blog Post -->
+        <!-- Forum Post -->
         <?php 
             while ($row = mysqli_fetch_array($result_posts)) { ?>
 
           <div class="card mb-4" style="box-shadow: 5px 5px 5px 2px #ccc;">
             <div class="card-body">
-            <h2 class="card-title"><?php echo $row['post_title']; ?></h2>
+            <a href="single-post.php?post=<?php echo $row['post_id'];?>"><h2 class="card-title"><?php echo $row['post_title']; ?></h2></a>
             <p class="card-text"><?php echo $row['post_description']; ?></p>
-            <a href="#">Read More &rarr;</a>
+            <a href="single-post.php?post=<?php echo $row['post_id'];?>">Read More &rarr;</a>
           </div>
           <div class="card-footer text-muted">
             <?php echo $row['created_at']; ?>
 
-            <a href="#"><?php echo $row['username']; ?> </a>
+            <a href="#"><?php echo $row['username']; ?></a>
           </div>
         </div>
+        <br>
       <?php } ?>
 
-          
 
 
       </div>
