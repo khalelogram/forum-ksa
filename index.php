@@ -2,19 +2,18 @@
 <?php
 
 include 'header.php';
+include 'navbar.php';
+include 'banner.php';
+include 'userdashboard/server.php'
+
+
 
 
 ?>
 
 <body>
 
-<?php
 
-include 'navbar.php';
-include 'banner.php';
-include 'userdashboard/server.php'
-
-?>
 
 
   <!-- Page Content -->
