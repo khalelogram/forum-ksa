@@ -48,14 +48,14 @@ $success = "";
 
 if(isset($_POST["btnRegister"])){
 
-$query = mysqli_query($conn ,"SELECT * FROM tbl_users WHERE email='$email' AND username=$username' AND full_name='$fullname'");
+$query = mysqli_query($conn ,"SELECT * FROM tbl_users WHERE email='$email' AND username='$username' AND full_name='$fullname'");
 
 
-  if (empty($_POST["fullname"])) {
+  if (empty($_POST["btnRegister"])) {
     $fullnameErr = "Full Name is Required !";
   }elseif(strlen($_POST["fullname"])< 2) {
     $fullnameErr = "Buong pangalan Tanga kaba";  
-  }elseif (mysqli_num_rows($query) > 0) {
+  }elseif (mysqli_num_rows($query) < 0) {
       $fullnameErr = "Fullname is Already Exist!";
 
   }else{
@@ -66,7 +66,7 @@ $query = mysqli_query($conn ,"SELECT * FROM tbl_users WHERE email='$email' AND u
     $emailErr = "Email is Required !" ;
   }elseif(!filter_var($_POST["email"] , FILTER_VALIDATE_EMAIL)){
     $emailErr = "invalid email format";
-  }elseif (mysqli_num_rows($query) > 0 ) {
+  }elseif (mysqli_num_rows($query) < 0 ) {
       $emailErr ="Email is Already Used!";
   }else{
     $email = $_POST["email"];
@@ -77,7 +77,7 @@ $query = mysqli_query($conn ,"SELECT * FROM tbl_users WHERE email='$email' AND u
   }
   elseif(strlen($_POST["username"])< 2) {
     $usernameErr = "Username is too Short";
-  }elseif (mysqli_num_rows($query) > 0) {
+  }elseif (mysqli_num_rows($query) < 0) {
       $usernameErr = "Username is Already Exist!";
   }else {
     $username = $_POST["username"];
@@ -131,7 +131,7 @@ $query = mysqli_query($conn ,"SELECT * FROM tbl_users WHERE email='$email' AND u
             <div id="login-row" class="row justify-content-center align-items-center align-content-center">
                 <div id="login-column" class="col-md-5">
                     <div id="login-box" class="col-md-11" style="height: 500px;margin-top: 0px">
-                        <form id="login-form" class="form" action="" method="post">
+                        <form id="login-form" class="form" method="post">
                             <!-- Display validation Error Here -->
                           
 

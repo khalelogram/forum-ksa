@@ -19,7 +19,6 @@ $post_state = false;
 
 <div class="rounded-lg" style=" margin: 15px;">
 	<div class="row">
-        
 
 		<div class="col-md-9">
 			<!-- Side Widget -->
@@ -58,7 +57,6 @@ $post_state = false;
 					</div>
 				</div>			
 			</div>
-             
 
 
 	<div class="row bootstrap snippets">
