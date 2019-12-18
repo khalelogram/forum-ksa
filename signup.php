@@ -36,18 +36,27 @@
   color: red;
 
 }
+.success {
+  color : green;
+}
 </style>
 <?php 
 include("database/database.php");
 $fullname = $email = $username = $password = "";
 $fullnameErr = $emailErr = $usernameErr = $passwordErr = "";
-
+$success = "";
 
 if(isset($_POST["btnRegister"])){
+
+$query = mysqli_query($conn ,"SELECT * FROM tbl_users WHERE email='$email' AND username='$username' AND full_name='$fullname'");
+
   if (empty($_POST["fullname"])) {
     $fullnameErr = "Full Name is Required !";
   }elseif(strlen($_POST["fullname"])< 2) {
-    $fullnameErr = "Buong pangalan Tanga kaba";
+    $fullnameErr = "Buong pangalan Tanga kaba";  
+  }elseif (mysqli_num_rows($query) > 0) {
+      $fullnameErr = "Fullname is Already Exist!";
+
   }else{
     $fullname = $_POST["fullname"];
   }
@@ -56,6 +65,8 @@ if(isset($_POST["btnRegister"])){
     $emailErr = "Email is Required !" ;
   }elseif(!filter_var($_POST["email"] , FILTER_VALIDATE_EMAIL)){
     $emailErr = "invalid email format";
+  }elseif (mysqli_num_rows($query) > 0 ) {
+      $emailErr ="Email is Already Used!";
   }else{
     $email = $_POST["email"];
   }
@@ -65,6 +76,8 @@ if(isset($_POST["btnRegister"])){
   }
   elseif(strlen($_POST["username"])< 2) {
     $usernameErr = "Username is too Short";
+  }elseif (mysqli_num_rows($query) > 0) {
+      $usernameErr = "Username is Already Exist!";
   }else {
     $username = $_POST["username"];
   }
@@ -83,10 +96,15 @@ if(isset($_POST["btnRegister"])){
       $sql = "INSERT INTO tbl_users (full_name,email,username,password)
           VALUES ('$fullname','$email','$username','$password')";
       mysqli_query($conn, $sql); 
-      header('location: login.php');
-
+      $success = "<h3><b>You Are successfully Registered !</b></h3>";
+     
+      
+      }
   }
-    
+  
+  
+
+  
 }
 
 
@@ -116,7 +134,7 @@ if(isset($_POST["btnRegister"])){
                             <!-- Display validation Error Here -->
                           
 
-
+                            <span class="success"> <?php echo $success; ?></span>
 
                             <div class="form-group">
                                 <label for="fullname" class="text-info">Full Name:</label><br>
