@@ -1,4 +1,4 @@
-<?php 
+<?php
 	$post_title = "";
 	$post_description = "";
 
@@ -33,6 +33,20 @@
 		mysqli_query($db, "DELETE FROM tbl_posts WHERE post_id=$post_id");
 		header('location: userposts.php');
 	}
+
+	if (isset($_POST['post_comment'])) {
+		$post_id = $_POST['post_id'];
+		$comment = $_POST['comment'];
+		$user_id = $_POST['user_id'];
+
+		$query = "INSERT INTO tbl_comments (post_id, comment, user_id) VALUES('$post_id', '$comment','$user_id')";
+		mysqli_query($db, $query);
+		header('location: ../single-post.php');
+	}
+
 		// $result_posts = mysqli_query($db, "SELECT * FROM tbl_posts ORDER BY post_id DESC ");
-		$result_posts =mysqli_query($db, "SELECT * FROM `tbl_posts` INNER JOIN tbl_users ON tbl_posts.user_id = tbl_users.user_id ORDER BY post_id DESC ");
+		$result_posts =mysqli_query($db, "SELECT * FROM tbl_posts INNER JOIN tbl_users ON tbl_posts.user_id = tbl_users.user_id ORDER BY post_id DESC ");
+
+		$result_comments =mysqli_query($db, "SELECT * FROM tbl_comments INNER JOIN tbl_posts ON tbl_comments.post_id = tbl_posts.post_id ORDER BY comment_id DESC");
+	
  ?>

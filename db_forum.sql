@@ -90,7 +90,7 @@ CREATE TABLE `tbl_users` (
   `password` varchar(225) NOT NULL,
   `account_type` int(1) NOT NULL,
   `user_profile_pic` varchar(225) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
