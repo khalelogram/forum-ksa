@@ -48,7 +48,8 @@ $success = "";
 
 if(isset($_POST["btnRegister"])){
 
-$query = mysqli_query($conn ,"SELECT * FROM tbl_users WHERE email='$email' AND username='$username' AND full_name='$fullname'");
+$query = mysqli_query($conn ,"SELECT * FROM tbl_users WHERE email='$email' AND username=$username' AND full_name='$fullname'");
+
 
   if (empty($_POST["fullname"])) {
     $fullnameErr = "Full Name is Required !";
@@ -158,7 +159,9 @@ $query = mysqli_query($conn ,"SELECT * FROM tbl_users WHERE email='$email' AND u
 
                             <div class="form-group">
                                 <input type="submit" name="btnRegister" class="btn btn-info btn-md" value="Register"><br>
-                                <p>Are You Already Registered?  <a href="login.php" class="text-info">Sign-in</a> </p>
+                                <p>Are You Already Registered?<a href="login.php" class="text-info">Sign-in</a>  <a href="index.php" class="text-info"><b>Cancel</b></a></p>
+
+                               
                             </div>
                             
                         </form>

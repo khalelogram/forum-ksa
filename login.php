@@ -134,6 +134,7 @@ if (isset($_POST['btnlogin'])) {
                             </div>
                             <div id="register-link" class="text-right">
                                 <a href="signup.php" class="text-info">Register here</a>
+                                <a href="index.php" class="text-info"><b>Cancel</b></a>
                             </div>
                         </form>
                     </div>
