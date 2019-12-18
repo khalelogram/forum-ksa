@@ -19,8 +19,7 @@ $post_state = false;
 
 <div class="rounded-lg" style=" margin: 15px;">
 	<div class="row">
-        <?php 
-            while ($row = mysqli_fetch_array($result_posts)) { ?>
+        
 
 		<div class="col-md-9">
 			<!-- Side Widget -->
@@ -59,7 +58,7 @@ $post_state = false;
 					</div>
 				</div>			
 			</div>
-             <?php } ?>
+             
 
 
 	<div class="row bootstrap snippets">
